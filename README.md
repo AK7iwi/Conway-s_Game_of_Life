@@ -1,4 +1,4 @@
-# JDL
+# Conway's Game of Life
 This project is a Python implementation of Conway's Game of Life using Pygame. It allows the user to select the starting configuration of alive cells by clicking on the screen, and then start the simulation by clicking on the "Start" button. The simulation runs according to the rules of the Game of Life:
 
 1) Any live cell with fewer than two live neighbors dies, as if by underpopulation.
