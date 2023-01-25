@@ -78,7 +78,7 @@ def render_grid(grid, screen):
 
 
 def run_simulation(grid, screen):
-    start_button = pygame.Rect(screen.get_width()/2-40, 550, 80, 30)
+    start_button = pygame.Rect(screen.get_width()/2 , 700, 80, 30)
     start_button_color = (255,0,0)
     font = pygame.font.Font(None, 20)
     text = font.render("Start", True, (0, 0, 0))
@@ -95,7 +95,6 @@ def run_simulation(grid, screen):
                         x = int(mouse_pos[0]/20)
                         y = int(mouse_pos[1]/20)
                         grid[x][y] = 1
-                        pygame.draw.rect(screen, (0, 0, 100), (x * 20, y * 20, 20, 20))
                         if start_button.collidepoint(mouse_pos):
                             simulation_running = True
                             start_button_color = (255, 255, 255)
@@ -104,7 +103,6 @@ def run_simulation(grid, screen):
         if simulation_running:
             update_grid(grid)
             render_grid(grid, screen)
-            pygame.draw.rect(screen, start_button_color, start_button)
         pygame.display.update()
         clock.tick(10)
 
