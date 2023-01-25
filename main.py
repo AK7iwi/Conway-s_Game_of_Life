@@ -63,9 +63,9 @@ def render_grid(grid, screen):
         for y in range(len(grid[x])):
             # Draw the cell
             if grid[x][y] == 1:
-                pygame.draw.rect(screen, (0, 0, 100), (x*10, y*10, 10, 10))
+                pygame.draw.rect(screen, (0, 0, 100), (x*20, y*20, 20, 20))
             else:
-                pygame.draw.rect(screen, (255, 255, 255), (x * 10, y * 10, 10, 10))
+                pygame.draw.rect(screen, (255, 255, 255), (x * 20, y * 20, 20, 20))
 
 
 def run_simulation(grid, screen):
@@ -83,10 +83,10 @@ def run_simulation(grid, screen):
                 if not simulation_running:
                     if pygame.mouse.get_pressed()[0]:
                         mouse_pos = pygame.mouse.get_pos()
-                        x = int(mouse_pos[0]/10)
-                        y = int(mouse_pos[1]/10)
+                        x = int(mouse_pos[0]/20)
+                        y = int(mouse_pos[1]/20)
                         grid[x][y] = 1
-                        pygame.draw.rect(screen, (0, 0, 100), (x * 10, y * 10, 10, 10))
+                        pygame.draw.rect(screen, (0, 0, 100), (x * 20, y * 20, 20, 20))
                         if start_button.collidepoint(mouse_pos):
                             simulation_running = True
                             start_button_color = (0,255,0)
@@ -97,7 +97,7 @@ def run_simulation(grid, screen):
             render_grid(grid, screen)
             pygame.draw.rect(screen, start_button_color, start_button)
         pygame.display.update()
-        clock.tick(50)
+        clock.tick(5)
 
 # Initialize the grid and the Pygame library
 grid_size = (100,100)
