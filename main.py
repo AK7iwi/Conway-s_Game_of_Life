@@ -2,6 +2,7 @@ import pygame
 import copy
 import random
 
+
 def count_live_neighbors(grid, x, y):
     """
     Count the number of live neighbors for a given cell.
@@ -26,6 +27,7 @@ def count_live_neighbors(grid, x, y):
             if grid[check_x][check_y] == 1:
                 count += 1
     return count
+
 
 def update_grid(grid):
     """
@@ -55,14 +57,15 @@ def update_grid(grid):
     # Update the grid with the new state
     grid[:] = new_grid[:]
 
+
 def render_grid(grid, screen):
     """
     Render the grid on the screen using the Pygame library.
     """
     """
-    
+
     Random Colors
-    
+
     r = random.randint(0, 255)
     g = random.randint(0, 255)
     b = random.randint(0, 255)
@@ -72,14 +75,14 @@ def render_grid(grid, screen):
         for y in range(len(grid[x])):
             # Draw the cell
             if grid[x][y] == 1:
-                pygame.draw.rect(screen, (0, 0, 125), (x*20, y*20, 20, 20))
+                pygame.draw.rect(screen, (0, 0, 125), (x * 20, y * 20, 20, 20))
             else:
-                pygame.draw.rect(screen, (255,255,255) , (x * 20, y * 20, 20, 20))
+                pygame.draw.rect(screen, (255, 255, 255), (x * 20, y * 20, 20, 20))
 
 
 def run_simulation(grid, screen):
-    start_button = pygame.Rect(screen.get_width()/2 , 700, 80, 30)
-    start_button_color = (255,0,0)
+    start_button = pygame.Rect(screen.get_width() / 2 - 40, 550, 80, 30)
+    start_button_color = (255, 0, 0)
     font = pygame.font.Font(None, 20)
     text = font.render("Start", True, (0, 0, 0))
     clock = pygame.time.Clock()
@@ -92,28 +95,30 @@ def run_simulation(grid, screen):
                 if not simulation_running:
                     if pygame.mouse.get_pressed()[0]:
                         mouse_pos = pygame.mouse.get_pos()
-                        x = int(mouse_pos[0]/20)
-                        y = int(mouse_pos[1]/20)
+                        x = int(mouse_pos[0] / 20)
+                        y = int(mouse_pos[1] / 20)
                         grid[x][y] = 1
+                        pygame.draw.rect(screen, (0, 0, 100), (x * 20, y * 20, 20, 20))
                         if start_button.collidepoint(mouse_pos):
                             simulation_running = True
                             start_button_color = (255, 255, 255)
         pygame.draw.rect(screen, start_button_color, start_button)
-        screen.blit(text, (start_button.x+20, start_button.y+5))
+        screen.blit(text, (start_button.x + 20, start_button.y + 5))
         if simulation_running:
             update_grid(grid)
             render_grid(grid, screen)
         pygame.display.update()
         clock.tick(10)
 
+
 # Initialize the grid and the Pygame library
-grid_size = (50,50)
+grid_size = (50, 50)
 grid = [[0 for _ in range(grid_size[0])] for _ in range(grid_size[1])]
 pygame.init()
 
 # Set up the window for the simulation
 screen = pygame.display.set_mode((1000, 800))
 pygame.display.set_caption("Conway's Game of Life")
-run_simulation(grid,screen)
+run_simulation(grid, screen)
 
 
