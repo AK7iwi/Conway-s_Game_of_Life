@@ -52,18 +52,12 @@ def render_grid(grid, screen):
     """
     Render the grid on the screen using the Pygame library.
     """
-    """
-    Random Colors
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    rgb = [r, g, b]
-    """
+
     for x in range(len(grid)):
         for y in range(len(grid[x])):
             # Draw the cell
             if grid[x][y] == 1:
-                pygame.draw.rect(screen, (255, 0, 0), (x * 10 +1, y * 10+1 ,9, 9))
+                pygame.draw.rect(screen, (0, 0, 0), (x * 10 +1, y * 10+1 ,9, 9))
             else:
                 pygame.draw.rect(screen, (255, 255, 255), (x * 10 +1, y * 10+1 ,9, 9))
 
@@ -79,18 +73,24 @@ def draw_grid_lines(grid, cell_size):
 
 def run_simulation(grid, grid_size,screen):
 
-    start_button = pygame.Rect(screen.get_width() / 2 + 250, 250, 80, 30)
+    start_button = pygame.Rect(screen.get_width() / 2 + 250, 150, 80, 30)
     start_button_color = (255, 0, 0)
-    font = pygame.font.Font(None, 20)
-    text = font.render("Start", True, (0, 0, 0))
+    font1 = pygame.font.Font(None, 20)
+    text1 = font1.render("Start", True, (0, 0, 0))
     pygame.draw.rect(screen, start_button_color, start_button)
-    screen.blit(text, (start_button.x + 20, start_button.y + 5))
+    screen.blit(text1, (start_button.x + 20, start_button.y + 5))
 
-    restart_button = pygame.Rect(screen.get_width() / 2 + 250, 550, 80, 30)
+    restart_button = pygame.Rect(screen.get_width() / 2 + 250, 350, 80, 30)
     restart_button_color = (255, 0, 0)
-    font = pygame.font.Font(None, 20)
-    text = font.render("Restart", True, (0, 0, 0))
+    font2 = pygame.font.Font(None, 20)
+    text2 = font2.render("Restart", True, (0, 0, 0))
 
+    red_button = pygame.Rect(screen.get_width() / 2 + 250, 550, 80, 30)
+    red_button_color = (255, 0, 0)
+    font3 = pygame.font.Font(None, 20)
+    text3 = font3.render("Red", True, (0, 0, 0))
+    pygame.draw.rect(screen, red_button_color, red_button)
+    screen.blit(text3, (red_button.x + 20, red_button.y + 5))
 
     clock = pygame.time.Clock()
     simulation_running = False
@@ -113,13 +113,13 @@ def run_simulation(grid, grid_size,screen):
                             continue
                         if grid[x][y] == 0:
                             grid[x][y] = 1
-                            pygame.draw.rect(screen, (255, 0, 0), (x * 10 +1, y * 10+1 ,9, 9))
+                            pygame.draw.rect(screen, (0, 0, 0), (x * 10 +1, y * 10+1 ,9, 9))
                         elif grid[x][y] == 1:
                             grid[x][y] = 0
                             pygame.draw.rect(screen, (255, 255, 255), (x * 10 +1 , y * 10 +1 , 9, 9))
         if simulation_running:
             pygame.draw.rect(screen, restart_button_color, restart_button)
-            screen.blit(text, (restart_button.x + 20, restart_button.y + 5))
+            screen.blit(text2, (restart_button.x + 20, restart_button.y + 5))
             if pygame.mouse.get_pressed()[0]:
                 mouse_pos = pygame.mouse.get_pos()
                 if restart_button.collidepoint(mouse_pos):
