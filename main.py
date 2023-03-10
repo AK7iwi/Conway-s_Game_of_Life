@@ -18,7 +18,6 @@ def count_live_neighbors(grid, x, y):
                 count += 1
     return count
 
-
 def update_grid(grid):
     """
     Update the state of the cells based on the rules of the Game of Life.
