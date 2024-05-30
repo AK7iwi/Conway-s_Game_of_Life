@@ -7,3 +7,6 @@ This project is a Python implementation of Conway's Game of Life using Pygame. I
 4) Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
 The program renders the grid on the screen, blue cells represent the alive cells and white cells represent the dead cells
+
+
+(The ugliest code for the most beautiful program)
